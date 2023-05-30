@@ -13,9 +13,18 @@ document.getElementById('form').addEventListener('submit', (e) => {
         taskInput: taskInput
     }
     taskManager.push(newTask);
-    handleDisplay(taskManager);
+    displayTask(taskManager);
 });
 
-let handleDisplay = (tasks) => {
-    
+let displayTask = (tasks) => {
+    let taskList = document.getElementById('taskList')
+
+    taskList.innerHTML = '';
+    tasks.map(task => {
+        let card = document.createElement('div')
+        taskList.textContent = task.name;
+
+        if
+
+    })
 }
