@@ -1,32 +1,53 @@
-let taskManager = []
+// Create an empty array to store tasks
+let taskList = [];
 
-document.getElementById('form').addEventListener('submit', (e) => {
+// Select the form element and add a submit event listener
+document.querySelector('#form').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    let taskInput = e.target.taskInput.value;
+    // Get the value entered in the task input field
+    let taskInput = document.querySelector('#taskInput');
+    let task = taskInput.value;
 
-    if(taskInput.trim() === ''){
-        alert(`Please enter Task`)
-    }return;
-
+    // Create a new task object
     let newTask = {
-        taskInput: taskInput
-    }
-    taskManager.push(newTask);
-    displayTask(taskManager);
+        name: task,
+        completed: false
+    };
+
+    // Add the new task to the taskList array
+    taskList.push(newTask);
+
+    // Call a function to handle displaying the tasks
+    displayTasks(taskList);
+
+    // Reset the task input field
+    taskInput.value = '';
 });
 
-let displayTask = (tasks) => {
-    let taskListElement = document.getElementById('taskList')
 
+// Function to display the tasks
+function displayTasks(tasks) {
+    // Get the element where the task list will be displayed
+    let taskListElement = document.getElementById('taskList');
+
+    // Clear any existing content
     taskListElement.innerHTML = '';
 
-    tasks.map(task => {
-        let createElement = document.createElement('li')
-        createElement.textContent = task.name;
+    // Iterate over the tasks array and generate HTML for each task
+    tasks.forEach(task => {
+        let taskElement = document.createElement('li');
+        taskElement.textContent = task.name;
 
-        if(task.completed){
-            createElement.classList.add('completed')
+        // Add 'completed' class if the task is marked as completed
+        if (task.completed) {
+            taskElement.classList.add('completed');
         }
-    })
+
+        taskListElement.appendChild(taskElement);
+    });
 }
+
+// Call the displayTasks function initially to show any existing tasks
+displayTasks(taskList);
+
