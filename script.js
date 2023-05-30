@@ -17,14 +17,16 @@ document.getElementById('form').addEventListener('submit', (e) => {
 });
 
 let displayTask = (tasks) => {
-    let taskList = document.getElementById('taskList')
+    let taskListElement = document.getElementById('taskList')
 
-    taskList.innerHTML = '';
+    taskListElement.innerHTML = '';
+
     tasks.map(task => {
-        let card = document.createElement('div')
-        taskList.textContent = task.name;
+        let createElement = document.createElement('li')
+        createElement.textContent = task.name;
 
-        if
-
+        if(task.completed){
+            createElement.classList.add('completed')
+        }
     })
 }
